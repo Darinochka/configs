@@ -50,9 +50,10 @@ set wildmode=list:longest
 " Wildmenu will ignore files with these extensions.
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
-
+let g:AutoPairsMultilineClose = 0
 
 " PLUGINS ---------------------------------------------------------------- {{{
+"
 
 call plug#begin('~/.vim/plugged')
 
@@ -61,6 +62,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'preservim/nerdtree'
   
   Plug 'dracula/vim', { 'as': 'dracula' }
+  
+  Plug 'jiangmiao/auto-pairs'
+
+  Plug 'tpope/vim-commentary'
 call plug#end()
 colorscheme molokai 
 hi Normal guibg=NONE ctermbg=NONE
