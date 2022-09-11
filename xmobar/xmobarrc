@@ -1,0 +1,43 @@
+Config { font            = "xft:Ubuntu Nerd Font Complete:weight=bold:pixelsize=16:antialias=true:hinting=true"
+       , additionalFonts = [ "xft:Mononoki:pixelsize=16:antialias=true:hinting=true"
+                           , "xft:Font Awesome 6 Free Solid:pixelsize=16"
+                           , "xft:Font Awesome 6 Brands:pixelsize=16"
+                           , "xft:JetBrains Mono:pixelsize=16"
+                           ]
+       , bgColor      = "#282c34"
+       , fgColor      = "#661183"
+       , position     = TopSize L 100 24
+       , lowerOnStart = True
+       , hideOnStart  = False
+       , allDesktops  = True
+       , persistent   = True
+       , iconRoot     = ".xmonad/xpm/"  -- default: "."
+       , commands = [
+                        -- penguin icon
+                      Run Com "echo" ["<fn=3>\xf17c</fn>"] "penguin" 3600
+                        -- cpu
+                    , Run Cpu ["-t", "<fn=2>\xf108</fn>  cpu: <total>%","-H","50","--high","red"] 20
+                        -- ram
+                    , Run Memory ["-t", "<fn=2>\xf233</fn>  mem: <usedratio>%"] 20
+                        -- disk space free
+                    , Run DiskU [("/", "<fn=2>\xf0c7</fn>  hdd: <free>")] [] 60
+                        -- battery icon
+                    , Run Com "echo" ["<fn=2>\xf242</fn>"] "baticon" 3600
+                        -- battery
+                    , Run Com "/bin/bash" ["-c", "~/scripts/show_battery.sh"] "battery" 360
+                        -- volume icon
+                    , Run Com "/bin/bash" ["-c", "~/scripts/show_volicon.sh"] "volicon" 10 
+                        -- volume
+                    , Run Com "/bin/bash" ["-c", "~/scripts/show_volume.sh"] "volume" 10
+                        -- micr icon
+                    , Run Com "/bin/bash" ["-c", "~/scripts/show_micr.sh"] "micr" 10
+                        -- time and date
+                    , Run Date "<fn=2>\xf017</fn>  %d.%m.%Y %H:%M:%S " "date" 10 
+                        -- Prints out the left side items such as workspaces, layout, etc.
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " %StdinReader% }{ <box type=Bottom width=2 mb=2 color=#51afef><fc=#51afef>%penguin% </fc></box>    <box type=Bottom width=2 mb=2 color=#ecbe7b><fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc></box>    <box type=Bottom width=2 mb=2 color=#ff6c6b><fc=#ff6c6b><action=`alacritty -e htop`>%memory%</action></fc></box>    <box type=Bottom width=2 mb=2 color=#a9a1e1><fc=#a9a1e1>%disku%</fc></box>    <box type=Bottom width=2 mb=2 color=#da8548><fc=#da8548>%baticon%  %battery%</fc></box>    <box type=Bottom width=2 mb=2 color=#5FDA7A><fc=#5FDA7A>%volicon%  %volume%</fc></box>     <box type=Bottom width=2 mb=2 color=#a49bfd><fc=#a49bfd>%micr%</fc></box>    <box type=Bottom width=2 mb=2 color=#46d9ff><fc=#46d9ff>%date%</fc></box>"
+       }
+
