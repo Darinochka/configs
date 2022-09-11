@@ -1,1 +1,0 @@
-/home/darinka/.xmonad/xmonad.hs
