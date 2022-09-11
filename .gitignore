@@ -1,0 +1,5 @@
+build-x86_64-linux/
+xmonad.errors
+xmonad-x86_64-linux
+xmobarrc_default
+xmobarrc_beat
