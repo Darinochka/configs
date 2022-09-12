@@ -34,7 +34,6 @@ import XMonad.Hooks.DynamicLog
 import System.IO
 import XMonad.Actions.SpawnOn
 import qualified XMonad.StackSet as W
-import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 -- The preferred terminal program, which is used in a binding below and by
