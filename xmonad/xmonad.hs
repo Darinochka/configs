@@ -14,8 +14,6 @@ import System.Exit
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
 import XMonad.Hooks.ManageDocks (avoidStruts, docks, manageDocks, ToggleStruts(..))
-import qualified XMonad.StackSet as W
-import qualified Data.Map        as M
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
@@ -36,38 +34,39 @@ import XMonad.Hooks.DynamicLog
 import System.IO
 import XMonad.Actions.SpawnOn
 import qualified XMonad.StackSet as W
+import qualified XMonad.StackSet as W
+import qualified Data.Map        as M
+
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "terminator"
+myTerminal          = "terminator"
 
 -- Whether focus follows the mouse pointer.
+--
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
 
 -- Whether clicking on a window to focus also passes the click to the window
+--
 myClickJustFocuses :: Bool
-myClickJustFocuses = False
+myClickJustFocuses  = False
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 1
+myBorderWidth       = 1
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
-myModMask       = mod1Mask
+myModMask           = mod1Mask
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
 -- workspace name. The number of workspaces is determined by the length
 -- of this list.
---
--- A tagging example:
---
--- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
 -- myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 myWorkspaces       = ["term", "web", "telegram", "vscode"] ++ map show [5..9]
@@ -144,32 +143,34 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_period), sendMessage (IncMasterN (-1)))
     
     -- Take a full screenshot to the clipboard
-    , ((0,                  xK_Print), spawn "flameshot full -c")
+    , ((0,                  xK_Print ), spawn "flameshot full -c")
 
     -- Take a screenshot of the focus window to the clipboard
-    , ((modm,               xK_Print), spawn "sh ~/scripts/take_focus_screen.sh")
+    , ((modm,               xK_Print ), spawn "sh ~/scripts/take_focus_screen.sh")
    
     -- Take a selecting screenshot to the clipboard
-    , ((modm .|. shiftMask, xK_s    ),     spawn "sh ~/scripts/take_select_screen.sh")
+    , ((modm .|. shiftMask, xK_s     ), spawn "sh ~/scripts/take_select_screen.sh")
   
     -- Change wallpapers
-    , ((modm,               xK_c    ), spawn "sh ~/scripts/changing_wallpapers.sh")
+    , ((modm,               xK_c     ), spawn "sh ~/scripts/changing_wallpapers.sh")
   
     -- Mute/unmute volume
-    , ((0, xF86XK_AudioMute), spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
+    , ((0,           xF86XK_AudioMute), spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
     
     -- Raise volume
-    , ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
+    , ((0,    xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
+    
     -- Lower volume	
-    , ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
+    , ((0,    xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
+    
     -- Mute/unmute micr
-    , ((0, xF86XK_AudioMicMute), spawn "pactl set-source-mute @DEFAULT_SOURCE@ toggle")
+    , ((0,        xF86XK_AudioMicMute), spawn "pactl set-source-mute @DEFAULT_SOURCE@ toggle")
 
     -- Raise brightness
-    , ((0, xF86XK_MonBrightnessUp), spawn "brightnessctl set 10%+")
+    , ((0,     xF86XK_MonBrightnessUp), spawn "brightnessctl set 10%+")
 
     -- Lower brightness
-    , ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl set 10%-")
+    , ((0,   xF86XK_MonBrightnessDown), spawn "brightnessctl set 10%-")
 
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
@@ -240,8 +241,9 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- Define layout for specific workspaces
 myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
   where
-     -- default tiling algorithm partitions the screen into two panes
+     -- Default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
+
      -- The default number of windows in the master pane
      nmaster = 1
 
@@ -267,6 +269,7 @@ myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
 -- 'className' and 'resource' are used below.
 --
 
+-- ???
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = composeAll
     [     (className =? "terminator") --> doF (W.shift "term")
@@ -290,20 +293,19 @@ myEventHook = mempty
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
-myTitleColor = "#E8418F" -- color of window title
-myTitleLength = 50 -- truncate window title to this length
-myCurrentWSColor = "#BD40E6" -- color of active workspace
-myVisibleWSColor = "#ffffff" -- color of inactive workspace
-myUrgentWSColor = "#000000" -- color of workspace with 'urgent' window
-myCurrentWSLeft = "" -- wrap active workspace with these
+myTitleColor = "#E8418F"        -- color of window title
+myTitleLength = 50              -- truncate window title to this length
+myCurrentWSColor = "#BD40E6"    -- color of active workspace
+myVisibleWSColor = "#ffffff"    -- color of inactive workspace
+myUrgentWSColor = "#000000"     -- color of workspace with 'urgent' window
+myCurrentWSLeft = ""            -- wrap active workspace with these
 myCurrentWSRight = ""
-myVisibleWSLeft = "(" -- wrap inactive workspace with these
+myVisibleWSLeft = "("           -- wrap inactive workspace with these
 myVisibleWSRight = ")"
-myUrgentWSLeft = "{" -- wrap urgent workspace with these
+myUrgentWSLeft = "{"            -- wrap urgent workspace with these
 myUrgentWSRight = "}"
 
 myLogHook h = dynamicLogWithPP $ xmobarPP {
--- ppCurrent = xmobarColor "#429942" "" . wrap "<" ">"
 ppTitle = xmobarColor myTitleColor "" . shorten myTitleLength
 , ppSep = "  |  "
 , ppWsSep = "    •    "  
@@ -326,7 +328,7 @@ myStartupHook = do
         spawnOnce "nitrogen --restore &"
         spawnOnce "picom --opengl --vsync &"
         spawnOnce "xmobar &"
-       --  spawnOn "vscode" "/usr/bin/code"
+       -- spawnOn "vscode" "/usr/bin/code"
        -- spawnOn "term" "/usr/bin/terminator"
        -- spawnOn "web" "/usr/bin/google-chrome-stable"
        -- spawnOn "telegram" "/usr/bin/telegram-desktop"
