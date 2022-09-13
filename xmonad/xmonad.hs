@@ -41,6 +41,9 @@ import qualified Data.Map        as M
 --
 myTerminal          = "terminator"
 
+-- The preferred browser
+myBrowser           = "google-chrome-stable"
+
 -- Whether focus follows the mouse pointer.
 --
 myFocusFollowsMouse :: Bool
@@ -132,10 +135,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
 
     -- Increment the number of windows in the master area
-    -- Push window back into tiling
-    , ((modm,               xK_t     ), withFocused $ windows . W.sink)
-
-    -- Increment the number of windows in the master area
     , ((modm,               xK_comma ), sendMessage (IncMasterN 1))
 
     -- Deincrement the number of windows in the master area
@@ -149,7 +148,16 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
    
     -- Take a selecting screenshot to the clipboard
     , ((modm .|. shiftMask, xK_s     ), spawn "sh ~/scripts/take_select_screen.sh")
-  
+    
+    -- Open flameshot gui
+    , ((mod4Mask .|. shiftMask,  xK_s), spawn "flameshot gui")
+
+    -- Open browser
+    , ((modm,               xK_b     ), spawn myBrowser)
+    
+    -- Open telegram-desktop
+    , ((modm,               xK_g     ), spawn "telegram-desktop")
+
     -- Change wallpapers
     , ((modm,               xK_c     ), spawn "sh ~/scripts/changing_wallpapers.sh")
   

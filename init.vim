@@ -76,6 +76,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'kyazdani42/nvim-tree.lua'
 
   Plug 'kyazdani42/nvim-web-devicons'
+
 call plug#end()
 
 colorscheme monokai 
