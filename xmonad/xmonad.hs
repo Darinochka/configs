@@ -153,7 +153,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((mod4Mask .|. shiftMask,  xK_s), spawn "flameshot gui")
 
     -- Open browser
-    , ((modm,               xK_b     ), spawn myBrowser)
+    , ((modm,               xK_o     ), spawn myBrowser)
     
     -- Open telegram-desktop
     , ((modm,               xK_g     ), spawn "telegram-desktop")
