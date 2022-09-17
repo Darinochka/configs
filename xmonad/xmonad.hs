@@ -39,7 +39,7 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal          = "terminator"
+myTerminal          = "alacritty"
 
 -- The preferred browser
 myBrowser           = "google-chrome-stable"
@@ -335,6 +335,7 @@ myStartupHook = do
         spawnOnce "nitrogen --restore &"
         spawnOnce "picom --opengl --vsync &"
         spawnOnce "xmobar &"
+        spawnOnce "xset r 230 45"
        -- spawnOn "vscode" "/usr/bin/code"
        -- spawnOn "term" "/usr/bin/terminator"
        -- spawnOn "web" "/usr/bin/google-chrome-stable"
