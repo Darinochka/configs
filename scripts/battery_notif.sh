@@ -1,5 +1,6 @@
 #!/bin/sh
-BATTERY=$(($(show_battery.sh | sed 's/\%//')))
+USER=darinka
+BATTERY=$(($(sh /home/$USER/scripts/show_battery.sh | sed 's/\%//')))
 
 LOW=20
 CRITICAL=5
