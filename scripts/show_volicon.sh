@@ -1,7 +1,7 @@
 #!/bin/bash
 USER=darinka
 VOLUME=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}')
-VOLUME_INT=$(($(echo $VOLUME | grep -oP "\d{2}")))
+VOLUME_INT=$(($(echo $VOLUME | sed 's/\%//')))
 LOW=30
 ZERO=0
 
