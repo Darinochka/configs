@@ -33,6 +33,7 @@ import XMonad.Hooks.SetWMName
 import XMonad.Hooks.DynamicLog
 import System.IO
 import XMonad.Actions.SpawnOn
+import Data.Maybe (fromJust)
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
@@ -71,7 +72,15 @@ myModMask           = mod1Mask
 -- of this list.
 --
 -- myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
-myWorkspaces       = ["term", "web", "telegram", "vscode"] ++ map show [5..9]
+xmobarEscape = concatMap doubleLts
+  where doubleLts '<' = "<<"
+        doubleLts x    = [x]
+
+myWorkspaces       = clickable . (map xmobarEscape) $ ["term", "web", "telegram", "vscode", "5", "6", "7", "8", "9"]
+    where
+        clickable l = [ "<action=xdotool key alt+" ++ show (n) ++ ">" ++ ws ++ "</action>" |
+                             (i,ws) <- zip [1..9] l,                                        
+                            let n = i ]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -279,7 +288,7 @@ myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
 -- ???
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = composeAll
-    [     (className =? "terminator") --> doF (W.shift "term")
+    [     (className =? "alacritty") --> doF (W.shift "term")
         , (className =? "google-chrome-stable") --> doF (W.shift "web")
         , (className =? "telegram-desktop") --> doF (W.shift "telegram")
         , (className =? "code") --> doF (W.shift "vscode")
