@@ -34,10 +34,10 @@ Config { font            = "xft:Ubuntu Nerd Font Complete:weight=bold:pixelsize=
                         -- time and date
                     , Run Date "<fn=2>\xf017</fn>  %d.%m.%Y %H:%M:%S " "date" 10 
                         -- Prints out the left side items such as workspaces, layout, etc.
-                    , Run StdinReader
+                    , Run UnsafeStdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %StdinReader% }{ <box type=Bottom width=2 mb=2 color=#51afef><fc=#51afef>%penguin% </fc></box>    <box type=Bottom width=2 mb=2 color=#ecbe7b><fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc></box>    <box type=Bottom width=2 mb=2 color=#ff6c6b><fc=#ff6c6b><action=`alacritty -e htop`>%memory%</action></fc></box>    <box type=Bottom width=2 mb=2 color=#a9a1e1><fc=#a9a1e1>%disku%</fc></box>    <box type=Bottom width=2 mb=2 color=#da8548><fc=#da8548>%baticon%  %battery%</fc></box>    <box type=Bottom width=2 mb=2 color=#5FDA7A><fc=#5FDA7A>%volicon%  %volume%</fc></box>     <box type=Bottom width=2 mb=2 color=#a49bfd><fc=#a49bfd>%micr%</fc></box>    <box type=Bottom width=2 mb=2 color=#46d9ff><fc=#46d9ff>%date%</fc></box>"
+       , template = " %UnsafeStdinReader% }{ <box type=Bottom width=2 mb=2 color=#51afef><fc=#51afef>%penguin% </fc></box>    <box type=Bottom width=2 mb=2 color=#ecbe7b><fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc></box>    <box type=Bottom width=2 mb=2 color=#ff6c6b><fc=#ff6c6b><action=`alacritty -e htop`>%memory%</action></fc></box>    <box type=Bottom width=2 mb=2 color=#a9a1e1><fc=#a9a1e1>%disku%</fc></box>    <box type=Bottom width=2 mb=2 color=#da8548><fc=#da8548>%baticon%  %battery%</fc></box>    <box type=Bottom width=2 mb=2 color=#5FDA7A><fc=#5FDA7A>%volicon%  %volume%</fc></box>     <box type=Bottom width=2 mb=2 color=#a49bfd><fc=#a49bfd><action=`xdotool key XF86AudioMicMute`>%micr%</action></fc></box>    <box type=Bottom width=2 mb=2 color=#46d9ff><fc=#46d9ff>%date%</fc></box>"
        }
 
