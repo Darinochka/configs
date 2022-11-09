@@ -34,6 +34,7 @@ import XMonad.Hooks.DynamicLog
 import System.IO
 import XMonad.Actions.SpawnOn
 import Data.Maybe (fromJust)
+import XMonad.Hooks.EwmhDesktops
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
@@ -357,7 +358,7 @@ myStartupHook = do
 --
 main = do
         xmproc <- spawnPipe "xmobar"
-        xmonad $ docks def
+        xmonad $ ewmhFullscreen . ewmh $ docks def
             {
                 -- simple stuff
                 terminal           = myTerminal,
