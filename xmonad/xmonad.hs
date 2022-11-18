@@ -15,7 +15,6 @@ import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
 import XMonad.Hooks.ManageDocks (avoidStruts, docks, manageDocks, ToggleStruts(..))
 import XMonad.Layout.LayoutHints
-import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ToggleLayouts
@@ -374,7 +373,7 @@ main = do
                 mouseBindings      = myMouseBindings,
 
                 -- hooks, layouts
-                layoutHook         = myLayout,
+                layoutHook         = smartBorders Full ||| myLayout,
                 manageHook         = myManageHook <+> manageDocks,
                 handleEventHook    = myEventHook,
                 logHook            = myLogHook xmproc, 
