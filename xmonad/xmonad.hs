@@ -257,7 +257,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 --
 
 -- Define layout for specific workspaces
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| voidBorders Full)
+myLayout = avoidStruts (tiled ||| Mirror tiled)
   where
      -- Default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
