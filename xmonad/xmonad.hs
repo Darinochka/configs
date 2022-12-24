@@ -28,6 +28,7 @@ import XMonad.Layout.Circle
 import XMonad.Layout.Grid
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.ThreeColumns
+import XMonad.Layout.VoidBorders
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.DynamicLog
 import System.IO
@@ -43,7 +44,8 @@ import qualified Data.Map        as M
 myTerminal          = "alacritty"
 
 -- The preferred browser
-myBrowser           = "google-chrome-stable"
+myBrowser           = "firefox"
+
 
 -- Whether focus follows the mouse pointer.
 --
@@ -255,7 +257,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 --
 
 -- Define layout for specific workspaces
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
+myLayout = avoidStruts (tiled ||| Mirror tiled ||| voidBorders Full)
   where
      -- Default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -289,7 +291,7 @@ myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = composeAll
     [     (className =? "alacritty") --> doF (W.shift "term")
-        , (className =? "google-chrome-stable") --> doF (W.shift "web")
+        , (className =? "firefox") --> doF (W.shift "web")
         , (className =? "telegram-desktop") --> doF (W.shift "telegram")
         , (className =? "code") --> doF (W.shift "vscode")
     ]
