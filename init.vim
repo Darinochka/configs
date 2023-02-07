@@ -16,6 +16,10 @@ syntax on
 " Add numbers to each line on the left-hand side.
 set number
 
+" Turn relative line numbers on
+:set relativenumber
+:set rnu
+
 " Highlight cursor line underneath the cursor horizontally.
 set cursorline
 
@@ -46,6 +50,9 @@ set wildmenu
 " Make wildmenu behave like similar to Bash completion.
 set wildmode=list:longest
 
+" sett system clipboard as default one
+set clipboard+=unnamdplus
+
 " There are certain files that we would never want to edit with Vim.
 " Wildmenu will ignore files with these extensions.
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
@@ -57,25 +64,25 @@ let g:AutoPairsMultilineClose = 0
 
 call plug#begin('~/.vim/plugged')
 
-  Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 
-  Plug 'preservim/nerdtree'
-  
-  Plug 'dracula/vim', { 'as': 'dracula' }
-  
-  Plug 'jiangmiao/auto-pairs'
+Plug 'preservim/nerdtree'
 
-  Plug 'tpope/vim-commentary'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
-  Plug 'tanvirtin/monokai.nvim'
+Plug 'jiangmiao/auto-pairs'
 
-  Plug 'nvim-telescope/telescope.nvim'
+Plug 'tpope/vim-commentary'
 
-  Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'tanvirtin/monokai.nvim'
 
-  Plug 'kyazdani42/nvim-tree.lua'
+Plug 'nvim-telescope/telescope.nvim'
 
-  Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-treesitter/nvim-treesitter'
+
+Plug 'kyazdani42/nvim-tree.lua'
+
+Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
 
@@ -87,7 +94,11 @@ hi Normal guibg=NONE ctermbg=NONE
 
 " MAPPINGS --------------------------------------------------------------- {{{
 
-" Mappings code goes here.
+" semicolons <=> colons
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
 
 " }}}
 
