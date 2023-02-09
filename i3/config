@@ -42,6 +42,8 @@ client.unfocused            $bg        $bg         $ia
 client.focused_inactive     $bg        $bg         $ac
 client.urgent               $rd        $rd         $tx
 
+for_window [class=".*"] border pixel 2
+
 # for wallpapers
 exec nitrogen --restore &
 
