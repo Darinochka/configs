@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+
 USER=darinka
 MICR=$(pactl get-source-mute @DEFAULT_SOURCE@ | awk '{print $2}')
 MUTE=yes

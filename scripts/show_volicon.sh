@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+
 USER=darinka
 VOLUME=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}')
 VOLUME_INT=$(($(echo $VOLUME | sed 's/\%//')))

@@ -1,4 +1,5 @@
 #!/bin/sh
+
 USER=darinka
 BATTERY=$(($(sh /home/$USER/scripts/show_battery.sh | sed 's/\%//')))
 BATTERY_CHARGING=$(upower -i /org/freedesktop/UPower/devices/battery_BAT1 | awk '/state/ {print $2}')

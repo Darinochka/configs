@@ -1,4 +1,5 @@
 #!/bin/sh
+
 USER=darinka
 UID=$(id -u)
 export XAUTHORITY=/home/$USER/.Xauthority
