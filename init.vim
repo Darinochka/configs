@@ -51,26 +51,25 @@ set wildmenu
 set wildmode=list:longest
 
 " sett system clipboard as default one
-set clipboard+=unnamdplus
+" set clipboard+=unnamdplus
 
 " There are certain files that we would never want to edit with Vim.
 " Wildmenu will ignore files with these extensions.
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
-
-let g:AutoPairsMultilineClose = 0
 
 " PLUGINS ---------------------------------------------------------------- {{{
 "
 
 call plug#begin('~/.vim/plugged')
 
+" syntax checking and semantic errors
 Plug 'dense-analysis/ale'
-
-Plug 'preservim/nerdtree'
 
 Plug 'dracula/vim', { 'as': 'dracula' }
 
 Plug 'jiangmiao/auto-pairs'
+
+Plug 'lyokha/vim-xkbswitch'
 
 Plug 'tpope/vim-commentary'
 
@@ -89,6 +88,12 @@ call plug#end()
 colorscheme monokai 
 
 hi Normal guibg=NONE ctermbg=NONE
+
+let g:XkbSwitchEnabled = 1
+let g:XkbSwitchIMappings = ['ru']
+let g:XkbSwitchNLayout = 'us'
+let g:XkbSwitchILayout = 'us'
+
 " }}}
 
 
